@@ -24,6 +24,6 @@ export default async function(helper: Helper, args: CleanArgs) {
 	});
 
 	return Promise.all(promises).then(() => {
-		console.log(chalk.green('succesfully cleaned files/directories'));
+		console.log(chalk.green('successfully cleaned files/directories'));
 	});
 }
