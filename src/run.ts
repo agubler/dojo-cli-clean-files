@@ -1,6 +1,7 @@
 import { Argv } from 'yargs';
 import { Helper } from 'dojo-cli/interfaces';
 import * as rimraf from 'rimraf';
+import * as chalk from 'chalk';
 
 export interface CleanArgs extends Argv {
 	files: string;
@@ -11,6 +12,7 @@ export interface CleanArgs extends Argv {
 export default async function(helper: Helper, args: CleanArgs) {
 	const filepaths = args.files.split(',');
 	const promises = filepaths.map((filepath) => {
+		console.info(`cleaning '${filepath}' path\n`);
 		return new Promise((resolve, reject) => {
 			rimraf(filepath, (err) => {
 				if (err) {
@@ -21,5 +23,7 @@ export default async function(helper: Helper, args: CleanArgs) {
 		});
 	});
 
-	return Promise.all(promises);
+	return Promise.all(promises).then(() => {
+		console.log(chalk.green('succesfully cleaned files/directories'));
+	});
 }
