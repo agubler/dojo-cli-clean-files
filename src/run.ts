@@ -12,7 +12,7 @@ export interface CleanArgs extends Argv {
 export default async function(helper: Helper, args: CleanArgs) {
 	const filepaths = args.files.split(',');
 	const promises = filepaths.map((filepath) => {
-		console.info(`cleaning '${filepath}' path\n`);
+		console.info(`cleaned '${filepath}' path\n`);
 		return new Promise((resolve, reject) => {
 			rimraf(filepath, (err) => {
 				if (err) {
